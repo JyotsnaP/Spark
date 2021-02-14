@@ -20,18 +20,19 @@
 | `CACHING` 	 	 | Does not support caching, writes data to disk back and forth creating an I/O bottleneck    	  | Caches the data in-memory, enhancing the performance |     			 	 
 
 ## Spark jargons
--  ** Distributed computing**
-	-- Partioned data
-	-- Fault Tolerance
-	-- Lazy evaluation
 
--  **Spark as a process framework**
-	-- RDDS
-	-- Dataframes
-	-- Datasets
-	-- Transformations
-	-- Actions
-	-- Spark Jobß
+**Distributed computing** 
+  - Partioned data
+  - Fault Tolerance
+  - Lazy evaluation
+
+**Spark as a process framework**
+  - RDDS
+  - Dataframes
+  - Datasets
+  - Transformations
+  - Actions
+  - Spark Job
 ---
 
 ### Partitioned Data
@@ -57,13 +58,13 @@ One thing to note about an RDD is that it does not have a schema. They are not s
 | `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure |while coding in Pyspark     			 	 
 
 
-	![DF_has_schema](https://github.com/JyotsnaP/Spark/images/DF_has_schema.png)
+![DF_has_schema](https://github.com/JyotsnaP/Spark/images/DF_has_schema.png)
 --
 
-	![RDD_does_not_schema](https://github.com/JyotsnaP/Spark/images/RDD_does_not_schema.png)
+![RDD_does_not_schema](https://github.com/JyotsnaP/Spark/images/RDD_does_not_schema.png)
 --
 
-	![RDD_is_a_list_of_rows](https://github.com/JyotsnaP/Spark/images/RDD_is_a_list_of_rows.png)
+![RDD_is_a_list_of_rows](https://github.com/JyotsnaP/Spark/images/RDD_is_a_list_of_rows.png)
 
 
 ---
