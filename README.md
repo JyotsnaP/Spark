@@ -10,13 +10,14 @@
 
 ### Differences b/w traditional hadoop map reduce and spark
 ---
-| FEATURE 		 	 | HADOOP MAP REDUCE 		 	 | SPARK   									  
-|:-------------------------- |:---------------------------------------------------
-| `SPEED`      			 	 | Faster than single machine 	 | 100X faster than MR      			 	 
-| `WRITTEN IN`    	 | Java      						 	  | Scala      			 	 
-| `EASE OF USE` 	 | Complex and lengthy 						 	  | Simple and crisp      			 	 
-| `DATA PROCESSING` 	 	 | Batch processing 							 	 | ``Batch/Real time/iterative/graph      			 	 
-| `CACHING` 	 	 | Does not support caching, writes data to disk back and forth creating an I/O bottleneck    	  | Caches the data in-memory, enhancing the performance      			 	 
+
+| FEATURE 		 	 | HADOOP MAP REDUCE 		 	 | SPARK   						|			  
+|:-------------------------- |:---------------------------------------------------|
+| `SPEED`      			 	 | Faster than single machine 	 | 100X faster than MR   |   			 	 
+| `WRITTEN IN`    	 | Java      						 	  | Scala      			 |	 
+| `EASE OF USE` 	 | Complex and lengthy 						 	  | Simple and crisp    |  			 	 
+| `DATA PROCESSING` 	 	 | Batch processing 							 	 | Batch/Real time/iterative/graph |     			 	 
+| `CACHING` 	 	 | Does not support caching, writes data to disk back and forth creating an I/O bottleneck    	  | Caches the data in-memory, enhancing the performance |     			 	 
 
 ## Spark jargons
 -  ** Distributed computing**
@@ -49,10 +50,10 @@ A partition is nothing but an atomic chunk of data that is stored on a node in a
 
 One thing to note about an RDD is that it does not have a schema. They are not stored in an columnar structure or tabular. Data is just stored in them row-by-row and are displayed similar to a list (Like a list of rows - Ex -> [row(...)])
 
-| FEATURE 		 	 | RDDS 		 	 | SPARK DATAFRAME   									  
-|:-------------------------- |:---------------------------------------------------
-| `STORAGE`      			 	 | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format    
-| `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure while coding in Pyspark     			 	 
+| FEATURE 		 	 | RDDS 		 	 | SPARK DATAFRAME   				|					  
+|:-------------------------- |:---------------------------------------------------|
+| `STORAGE`      			 	 | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format  |  
+| `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure |while coding in Pyspark     			 	 
 
 
 	![DF_has_schema](https://github.com/JyotsnaP/Spark/images/DF_has_schema)
