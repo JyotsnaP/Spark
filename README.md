@@ -99,10 +99,14 @@ There are `two types` of transformations:
 
   One way to look at this is: 
 
-| FEATURE 		 	 | RDDS 		 	 | SPARK DATAFRAME   				|					  
+| PARTITION 		 	 | Item 		 	 | Cost   				| Store   				|					  
 |:-------------------------- |:-------------------------|:-------------------------|
-| `STORAGE`      			 	 | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format  |  
-| `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure |
+| `1`      			 	 | Tiramisu 	 | 10$  |	|
+| `1`      			 	 | Doritoes 	 | 5$ |	|
+| `2`      			 	 | Merlot 	 | 35$  |  |
+| `2`      			 	 | Coirander 	 | 1$  |	|  
+| `3`      			 	 | Eggs 	 | 6$  |  |
+| `3`      			 	 | Milk 	 | 3$  |  |
 
 
 | PARTITION| Item| Cost| Store |
