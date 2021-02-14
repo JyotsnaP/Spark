@@ -58,13 +58,13 @@ One thing to note about an RDD is that it does not have a schema. They are not s
 | `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure |while coding in Pyspark     			 	 
 
 
-![DF_has_schema](https://github.com/JyotsnaP/Spark/images/df_has_schema.png)
+![DF_has_schema](https://github.com/JyotsnaP/Spark/Images/df_has_schema.png)
 --
 
-![RDD_does_not_schema](https://github.com/JyotsnaP/Spark/images/rdd_does_not_schema.png)
+![RDD_does_not_schema](https://github.com/JyotsnaP/Spark/Images/rdd_does_not_schema.png)
 --
 
-![RDD_is_a_list_of_rows](https://github.com/JyotsnaP/Spark/images/rdd_is_a_list_of_rows.png)
+![RDD_is_a_list_of_rows](https://github.com/JyotsnaP/Spark/Images/rdd_is_a_list_of_rows.png)
 
 
 ---
