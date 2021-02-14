@@ -53,8 +53,7 @@ One thing to note about an RDD is that it does not have a schema. They are not s
 | FEATURE 		 	 | RDDS 		 	 | SPARK DATAFRAME   				|					  
 |:-------------------------- |:-------------------------|:-------------------------|
 | `STORAGE`      			 	 | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format  |  
-| `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure |while coding in Pyspark     			 	 
-
+| `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure while coding in Pyspark
 **Dataframe - has a schema**
 ![DF_has_schema](https://github.com/JyotsnaP/Spark/blob/master/Images/df_has_schema.png)
 --
@@ -99,14 +98,15 @@ There are `two types` of transformations:
   map(),mapPartition(),flatMap(),filter(),union()
 
   One way to look at this is: 
-	| PARTITION| COL1 - Item| COL 2- Cost| COL 3- Store |
-	|:------------------ |:------------------------------|:-----------------------------|
-	| `1`   	   		 | Tiramisu 	 	 | 10$		 |	Safeway						|
-	| `1`    			 | Doritoes 	 	 | 5$		 |	Costco						|
-	| `2` 	 			 | Merlot    	 	 | 35$		 |	Bev mo 						|
-	| `2`  				 | Coirander 	 	 | 1$		 |	Sprouts						|
-	| `3` 	 	 		 | Eggs		 	 	 | 6$		 |	Trader Joes's				|
-	| `3` 	 	 		 | Milk		 	 	 | 3$		 |	Farmer's market				|
+
+| PARTITION| Item| Cost| Store |
+|:------------------ |:------------------------------|:-----------------------------|
+| `1`| Tiramisu 	 	 | 10$		 |	Safeway						|
+| `1`  | Doritoes 	 	 | 5$		 |	Costco						|
+| `2` | Merlot    	 	 | 35$		 |	Bev mo 						|
+| `2`  | Coirander 	 	 | 1$		 |	Sprouts						|
+| `3`  | Eggs		 	 	 | 6$		 |	Trader Joes's				|
+| `3` | Milk		 	 	 | 3$		 |	Farmer's market				|
 
 Now if the transformation filter-functions can be : 
 1. Show me the record where the item is milk
