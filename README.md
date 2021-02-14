@@ -92,13 +92,17 @@ An analogy for this is like when a teacher decides to ask a question in the clas
 Spark Transformations is basically a function or set of functions performed on an RDD to get a new RDD. Note here that transformations return new RDDs since RDDs are immutable. Transformations are lazy in nature, what this means is that a tranformation gets **"executed"** only when an **"action"** is called on it. Two of the most basic transformations are: map() and filter()
 
 There are `two types` of transformations: 
+ - **Narrow Transformation**
+  All the elements required to compute the records in a single partition reside in a single partition of the parent RDD. This means that a subset of the partition can be used to calculate whatever result we want. 
+  Ex. 
+  map(),mapPartition(),flatMap(),filter(),union()
 
-**1. Narrow Transformation**
-All the elements required to compute the records in a single partition reside in a single partition of the parent RDD. This means that a subset of the partition can be used to calculate whatever result we want. 
-Ex. 
-map(),mapPartition(),flatMap(),filter(),union()
+  One way to look at this is: 
 
-One way to look at this is: 
+| FEATURE 		 	 | RDDS 		 	 | SPARK DATAFRAME   				|					  
+|:-------------------------- |:-------------------------|:-------------------------|
+| `STORAGE`      			 	 | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format  |  
+| `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure |
 
 
 | PARTITION| Item| Cost| Store |
