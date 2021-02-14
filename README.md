@@ -50,10 +50,10 @@ A partition is nothing but an atomic chunk of data that is stored on a node in a
 
 One thing to note about an RDD is that it does not have a schema. They are not stored in an columnar structure or tabular. Data is just stored in them row-by-row and are displayed similar to a list (Like a list of rows - Ex -> [row(...)])
 
-| FEATURE 		 	 | RDDS 		 	 | SPARK DATAFRAME   				|					  
-|:-------------------------- |:-------------------------|:-------------------------|
-| `STORAGE`      			 	 | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format  |  
-| `SCHEMA`      			 	 | No schema 	 | Has all the features of an RDD but also has a schema. This is the my chice of data structure while coding in Pyspark
+| FEATURE 	| RDDS 																 | SPARK DATAFRAME   					|					  
+|:--------- |:-------------------------------------------------------------------|:-------------------------------------|
+| `STORAGE` | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format   |  
+| `SCHEMA`  | No schema 	 													 | Has all the features of an RDD but also has a schema. This is the my chice of data structure while coding in Pyspark|
 **Dataframe - has a schema**
 ![DF_has_schema](https://github.com/JyotsnaP/Spark/blob/master/Images/df_has_schema.png)
 --
