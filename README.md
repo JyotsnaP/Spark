@@ -99,39 +99,39 @@ There are `two types` of transformations:
 
   One way to look at this is: 
 
-| PARTITION 		 	 | Item 		 	 | Cost   				| Store   				|					  
-|:-------------------------- |:-------------------------|:-------------------------|:-------------------------|
-| `1`      			 	 | Tiramisu 	 | 10$  |	|
-| `1`      			 	 | Doritoes 	 | 5$ |	|
-| `2`      			 	 | Merlot 	 | 35$  |  |
-| `2`      			 	 | Coirander 	 | 1$  |	|  
-| `3`      			 	 | Eggs 	 | 6$  |  |
-| `3`      			 	 | Milk 	 | 3$  |  |
+| PARTITION	| Item			| Cost 		 | Store 		 | Type 		 |
+|:----------|:--------------|:-----------|:--------------|:--------------|
+| `1`		| Tiramisu 	 	| 10$		 |	Safeway		 | Vegetarian	 |
+| `1` 		| Aquafaba		| 6$		 |	Safeway		 | Vegan		 |
+| `1` 		| Horizon Milk	| 3$		 |	Safeway		 | Vegetarian	 |
+| `2` 		| Butter wine	| 15$		 |	Costco		 | Vegan		 |
+| `2` 		| Merlot    	| 35$		 |	Costco 		 | Vegetarian	 |
+| `2`  		| Doritoes 	 	| 5$		 |	Costco		 | Vegetarian	 |
+| `3`  		| Coriander 	| 1$		 |	Trader Joes's| Vegan		 |
+| `3`  		| Ravioli		| 6$		 |	Trader Joes's| Vegetarian	 |
+| `3`  		| Chicken breast| 10$		 |	Trader Joes's| Non-Vegetarian|
 
 
-| PARTITION| Item| Cost| Store |
-|:------------------ |:------------------------------|:-----------------------------|:-----------------------------|
-| `1`| Tiramisu 	 	 | 10$		 |	Safeway						|
-| `1`  | Doritoes 	 	 | 5$		 |	Costco						|
-| `2` | Merlot    	 	 | 35$		 |	Bev mo 						|
-| `2`  | Coirander 	 	 | 1$		 |	Sprouts						|
-| `3`  | Eggs		 	 	 | 6$		 |	Trader Joes's				|
-| `3` | Milk		 	 	 | 3$		 |	Farmer's market				|
-
+Let's say for whatever reason, the partitioning is by `Store`
 Now if the transformation filter-functions can be : 
-1. Show me the record where the item is milk
+1. Show me the record where the item is `Coriander`
 2. Show me all items where the cost is higher than 5$
 3. Show me all items where the name of the food ends with the letter `s`
+4. Show me all `Vegetarian` or `Vegan` options.
 
 Now if notice each of the above filter-functions, each of them can be applied to the each of the partitions(`1`,`2`,`3`) without depending on the other partition and the resultant dataset will be as expected. These are called as transformations. 
 
 Following are a few examples to demonstrate that:
 
-![transformation_example](https://github.com/JyotsnaP/Spark/blob/master/Images/transformation_example.png)
+Create the data:
+![transformation_example_create_data](https://github.com/JyotsnaP/Spark/blob/master/Images/transformation_example_create_data.png)
+
+Filter the data:
+![transformation_example_filter_data](https://github.com/JyotsnaP/Spark/blob/master/Images/transformation_example_filter_data.png)
 
 
 
-- Wide Transformation
+- Wider Transformation
 
 
 map()
