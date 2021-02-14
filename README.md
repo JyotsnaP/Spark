@@ -11,13 +11,13 @@
 ### Differences b/w traditional hadoop map reduce and spark
 ---
 
-| FEATURE 		 	 | HADOOP MAP REDUCE 		 	 | SPARK   						|			  
-|:-------------------------- |:--------------------------|:--------------------------|
-| `SPEED`      			 	 | Faster than single machine 	 | 100X faster than MR   |   			 	 
-| `WRITTEN IN`    	 | Java      						 	  | Scala      			 |	 
-| `EASE OF USE` 	 | Complex and lengthy 						 	  | Simple and crisp    |  			 	 
-| `DATA PROCESSING` 	 	 | Batch processing 							 	 | Batch/Real time/iterative/graph |     			 	 
-| `CACHING` 	 	 | Does not support caching, writes data to disk back and forth creating an I/O bottleneck    	  | Caches the data in-memory, enhancing the performance |     			 	 
+| FEATURE 		 	 | HADOOP MAP REDUCE 		 	 | SPARK   						   |			  
+|:------------------ |:------------------------------|:--------------------------------|
+| `SPEED`      		 | Faster than single machine 	 | 100X faster than MR             |   			 	 
+| `WRITTEN IN`    	 | Java      					 | Scala      			 		   |	 
+| `EASE OF USE` 	 | Complex and lengthy 			 | Simple and crisp    			   |  			 	 
+| `DATA PROCESSING`  | Batch processing 			 | Batch/Real time/iterative/graph |     			 	 
+| `CACHING` 	 	 | Does not support caching, writes data to disk back and forth creating an I/O bottleneck| Caches the data in-memory, enhancing the performance |     			 	 
 
 ## Spark and Distributed Computing jargons
 
@@ -54,6 +54,8 @@ One thing to note about an RDD is that it does not have a schema. They are not s
 |:--------- |:-------------------------------------------------------------------|:-------------------------------------|
 | `STORAGE` | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format   |  
 | `SCHEMA`  | No schema 	 													 | Has all the features of an RDD but also has a schema. This is the my chice of data structure while coding in Pyspark|
+
+
 **Dataframe - has a schema**
 ![DF_has_schema](https://github.com/JyotsnaP/Spark/blob/master/Images/df_has_schema.png)
 --
