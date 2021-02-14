@@ -21,16 +21,17 @@
 
 ## Spark jargons
 -  ** Distributed computing**
--- Partioned data
--- Fault Tolerance
--- Lazy evaluation
+	-- Partioned data
+	-- Fault Tolerance
+	-- Lazy evaluation
+
 -  **Spark as a process framework**
--- RDDS
--- Dataframes
--- Datasets
--- Transformations
--- Actions
--- Spark Job
+	-- RDDS
+	-- Dataframes
+	-- Datasets
+	-- Transformations
+	-- Actions
+	-- Spark Jobß
 ---
 
 ### Partitioned Data
