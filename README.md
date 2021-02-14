@@ -22,19 +22,18 @@
 ## Spark and Distributed Computing jargons
 
 - Partioned data
-- Fault Tolerance
-- Lazy evaluation
-- In memory computation
 - RDDS
 - Dataframes
-- Datasets
+- Fault Tolerance
+- Lineage Graph
+- Lazy evaluation
+- In memory computation
 - Transformations
 - Actions
-- Lineage Graph
 - Spark Job
 ---
 
-### Partitioned Data
+### Partitioned Data, RDD and Dataframes
 A partition is nothing but an atomic chunk of data that is stored on a node in a cluster. Partitions primarily exist to facilitate parallelism in Apache Spark. **RDDS** in Apache Spark are a collection of partitions. An **RDD** is the fundamental data structure and building block of Apache Spark.
 
 **RDDS** are:
@@ -79,16 +78,68 @@ The DAG can be found in the **Spark History Server** on the **AWS EMR** console
 ![aws_console_spark_history](https://github.com/JyotsnaP/Spark/blob/master/Images/aws_console_spark_history.png)
 
 ### Lazy evaluation
-## "Being lazy in general has a negative connotation, but not in the context of Spark :P "
+####* Being lazy in general has a negative connotation, but not in the context of Spark *
 
 Going by its name, it is safe to say that Spark might be lazy, but extremely efficient nevertheless. It will not start execution unless an action is triggered. Transformations are lazy by nature - Spark keeps track of what transformation is called on which record(using the DAG) and will execute them only when an action is called on the data(for ex, printing the top 5 lines of the dataset). Hence, Spark ensures that data is not loaded and worked upon until and unless it is absolutely needed.
 
-An analogy for this is like when a teacher decides to ask a question in the class. It is also the rule of the class not to answer in mass, and only answer when specifically pointed to and asked. Now lets say the teacher asks a bunch of students what is `5 times 9`. If `Apache Spark` were a student in that class, he/she would use their brain to compute `5 times 9` only when the teacher says `Apache Spark, what is the answer` - Note that `what is the answer` here is equivalent of an `action`
+An analogy for this is like when a teacher decides to ask a question in the class. It is also the rule of the class not to answer in mass, and only answer when specifically pointed to and asked. Now lets say the teacher asks a bunch of students what is `5 times 9`. If `Apache Spark` were a student in that class, he/she would use their brain to compute `5 times 9` only when the teacher says `Apache Spark, what is the answer` - Note that `what is the answer` - is equivalent of an `action`
 
 ![lazy_evaluation](https://github.com/JyotsnaP/Spark/blob/master/Images/lazy_evaluation.png)
 
+### In memory computation
 
 
+### Transformations
+Spark Transformations is basically a function or set of functions performed on an RDD to get a new RDD. Note here that transformations return new RDDs since RDDs are immutable. Transformations are lazy in nature, what this means is that a tranformation gets **"executed"** only when an **"action"** is called on it. Two of the most basic transformations are: map() and filter()
+
+There are `two types` of transformations: 
+ - **Narrow Transformation**
+  All the elements required to compute the records in a single partition reside in a single partition of the parent RDD. This means that a subset of the partition can be used to calculate whatever result we want. 
+  Ex. 
+  map(),mapPartition(),flatMap(),filter(),union()
+
+  One way to look at this is: 
+	| PARTITION| COL1 - Item| COL 2- Cost| COL 3- Store |
+	|:------------------ |:------------------------------|:-----------------------------|
+	| `1`   	   		 | Tiramisu 	 	 | 10$		 |	Safeway						|
+	| `1`    			 | Doritoes 	 	 | 5$		 |	Costco						|
+	| `2` 	 			 | Merlot    	 	 | 35$		 |	Bev mo 						|
+	| `2`  				 | Coirander 	 	 | 1$		 |	Sprouts						|
+	| `3` 	 	 		 | Eggs		 	 	 | 6$		 |	Trader Joes's				|
+	| `3` 	 	 		 | Milk		 	 	 | 3$		 |	Farmer's market				|
+
+Now if the transformation filter-functions can be : 
+1. Show me the record where the item is milk
+2. Show me all items where the cost is higher than 5$
+3. Show me all items where the name of the food ends with the letter `s`
+
+Now if notice each of the above filter-functions, each of them can be applied to the each of the partitions(`1`,`2`,`3`) without depending on the other partition and the resultant dataset will be as expected. These are called as transformations. 
+
+Following are a few examples to demonstrate that:
+
+![transformation_example](https://github.com/JyotsnaP/Spark/blob/master/Images/transformation_example.png)
+
+
+
+- Wide Transformation
+
+
+map()
+filter()
+flatMap()
+
+### Actions
+count()
+collect()
+take(n)
+top()
+countByValue()
+countByValue()
+fold()
+aggregate()
+foreach()
+
+### Spark
 
 ---
 ## Limitations of spark
