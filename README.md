@@ -78,6 +78,17 @@ A Dag looks something like this:
 The DAG can be found in the **Spark History Server** on the **AWS EMR** console 
 ![aws_console_spark_history](https://github.com/JyotsnaP/Spark/blob/master/Images/aws_console_spark_history.png)
 
+### Lazy evaluation
+## "Being lazy in general has a negative connotation, but not in the context of Spark :P "
+
+Going by its name, it is safe to say that Spark might be lazy, but extremely efficient nevertheless. It will not start execution unless an action is triggered. Transformations are lazy by nature - Spark keeps track of what transformation is called on which record(using the DAG) and will execute them only when an action is called on the data(for ex, printing the top 5 lines of the dataset). Hence, Spark ensures that data is not loaded and worked upon until and unless it is absolutely needed.
+
+An analogy for this is like when a teacher decides to ask a question in the class. It is also the rule of the class not to answer in mass, and only answer when specifically pointed to and asked. Now lets say the teacher asks a bunch of students what is `5 times 9`. If `Apache Spark` were a student in that class, he/she would use their brain to compute `5 times 9` only when the teacher says `Apache Spark, what is the answer` - Note that `what is the answer` here is equivalent of an `action`
+
+![lazy_evaluation](https://github.com/JyotsnaP/Spark/blob/master/Images/lazy_evaluation.png)
+
+
+
 
 ---
 ## Limitations of spark
