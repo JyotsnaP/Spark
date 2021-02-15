@@ -55,8 +55,9 @@ One thing to note about an RDD is that it does not have a schema. They are not s
 | `STORAGE` | Not stored in columnar format. They are stored as list of rows 	 | They are stored in columnar format   |  
 | `SCHEMA`  | No schema 	 													 | Has all the features of an RDD but also has a schema. This is the my chice of data structure while coding in Pyspark|
 
-
+--
 **Dataframe - has a schema**
+
 ![DF_has_schema](https://github.com/JyotsnaP/Spark/blob/master/Images/df_has_schema.png)
 --
 **RDD - doesn't have a schema**
@@ -66,7 +67,7 @@ One thing to note about an RDD is that it does not have a schema. They are not s
 **RDD - is a list**
 
 ![RDD_is_a_list_of_rows](https://github.com/JyotsnaP/Spark/blob/master/Images/rdd_is_a_list_of_rows.png)
-
+--
 ### Fault tolerance and Lineage Graph
 As the name suggests, it is basically a mechanism in which Apache Spark is able to tolerate some amounts of faults. What this means is that the system must be ablt to gracefully continue work properly in the event of a failure without having to throw it's hands up in the air. A failure could be anything, like a node went down or any networking disturbances. 
 
@@ -79,7 +80,7 @@ The DAG can be found in the **Spark History Server** on the **AWS EMR** console
 ![aws_console_spark_history](https://github.com/JyotsnaP/Spark/blob/master/Images/aws_console_spark_history.png)
 
 ### Lazy evaluation
-####* Being lazy in general has a negative connotation, but not in the context of Spark *
+* Being lazy in general has a negative connotation, but not in the context of Spark *
 
 Going by its name, it is safe to say that Spark might be lazy, but extremely efficient nevertheless. It will not start execution unless an action is triggered. Transformations are lazy by nature - Spark keeps track of what transformation is called on which record(using the DAG) and will execute them only when an action is called on the data(for ex, printing the top 5 lines of the dataset). Hence, Spark ensures that data is not loaded and worked upon until and unless it is absolutely needed.
 
@@ -95,7 +96,7 @@ Spark Transformations is basically a function or set of functions performed on a
 
 There are `two types` of transformations: 
  - **Narrow Transformation**
-  All the elements required to compute the records in a single partition reside in a single partition of the parent RDD. This means that a subset of the partition can be used to calculate whatever result we want. 
+  All the elements required to compute the records in a single partition reside in a `single partition` of the parent RDD. This means that a subset of the partition can be used to calculate whatever result we want. 
   Ex. 
   map(),mapPartition(),flatMap(),filter(),union()
 
@@ -132,26 +133,35 @@ Filter the data:
 ![transformation_example_filter_data](https://github.com/JyotsnaP/Spark/blob/master/Images/transformation_example_filter_data.png)
 
 
+ - **Wide Transformation**
+  All the elements required to compute the records in a single partition may reside in a `many partitions` of the parent RDD. This means that a subset of the partition CANNOT be used to calculate whatever result we want. This means that there will be data movement between partitions to execute wider transformations - and since data is moving around it also called as shuffle transformations. 
 
-- Wider Transformation
+  Ex. 
+ 	groupByKey() , aggregateByKey() , aggregate() , join() , repartition()  
+
+  Taking the same example as above:
+  1. Let's say we need to find out total cost spent by a `Vegetarian`, a `Vegan` and a `Non Vegetarian`. 
+  1. Or we want to find out by store what are the item and its cost in increasing order.
+
+Aggregates:
+![wider_transformation_with_aggregates](https://github.com/JyotsnaP/Spark/blob/master/Images/wider_transformation_with_aggregates.png)
+
+Window Function:
+![wider_transformation_with_window_fn](https://github.com/JyotsnaP/Spark/blob/master/Images/wider_transformation_with_window_fn.png)
 
 
-map()
-filter()
-flatMap()
+ **NOTE**: When compared to Narrow Transformations, wider transformations are expensive operations due to `shuffling`
 
 ### Actions
-count()
-collect()
-take(n)
-top()
-countByValue()
-countByValue()
-fold()
-aggregate()
-foreach()
 
-### Spark
+As mentioned above, `transformations` result in the formation of a `new RDD`. Now `actions` on the contrary, `do not`. An action is what triggers an execution - what this means is that it sets into motion the `laze evaluztion` of Spark. *Remember the example of a teacher asking the class a question?* (if not visit the section *Lazy evaluation*) 
+
+An action is the one responsible for sending data from the executor to the driver. Executors are nodes that are responsible for executing tasks and driver is a JVM process that maintains and coordinates the execution of the tasks. 
+
+Ex. 
+  count(),collect(),take(n),top(),foreach()
+
+### Nitty Gritty details of Spark
 
 ---
 ## Limitations of spark
