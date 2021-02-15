@@ -40,68 +40,82 @@ sqlContext = SQLContext(Spark)
 | `NULL VALUES`  | This can be used in cases where you want to explicit consider a value in column as null. For ex, If you want a date column with a value of `1900-01-01` set null on the data frame | 
 | `DATE FORMAT`  | This is used to set the format of the input DataType and TimestampTupe columns.  			 | 
 
-#### Examples: 
+### Examples: 
 
-Ways to read from a CSV into a DataFrame
-   ```
-   # This reads the csv into the dataframe df
+#### This reads the csv into the dataframe df
+```
    df = spark.read.csv("/resources/example.csv")
-   ```
+```
    
-   ```
-   # Using the full source name you can do the same thing as:
+#### Using the full source name and load you can do the same thing  
+```
    df = spark.read.format("csv").load("/resources/example.csv")
-   ```
+```
    
-   ```
-     # When you run either of these commands and then do a print schema you will not the schema to look something like this: 
-	  root
+#### When you run either of the above commands and then do a print schema you will not the schema to look something like this: 
+```
+df.printSchema()
+
+root
 	 |-- _c0: string (nullable = true)
 	 |-- _c1: string (nullable = true)
 	 |-- _c2: string (nullable = true)
-	# This shows that the first line of the CSV - which is typically the name of the columns have not been inferred, instead the columns are names _c1, _c2 . To avoid this, add the following option.
-   ```
 
-```
-	# Using the option to infer schema 
-	   df = spark.read.option("header","True").csv("/resources/example.csv")
+# *This shows that the first line of the CSV - which is typically the name of the columns have not been inferred, instead the columns are names _c1, _c2.* 
 ```
 
+#### To avoid the above, add the following option.
+Using the option to infer schema
 ```
-	# As you can see, the schema has been inferred below. 
-	df.printSchema()
-		root
-		 |-- rank: integer (nullable = true)
-		 |-- student_name: string (nullable = true)
-		 |-- score: double (nullable = true)
-		 |-- year: integer (nullable = true)
+df = spark.read.option("header","True").csv("/resources/example.csv")
 ```
 
+#### The schema has been inferred below. 
 ```
-	# Reading mulitple CSV files
-	df = spark.read.csv("file1,file2,file3") # Notice that its one string with multiple paths that are comma separated.
-
-	# Reading a whole directory of csv files
-	spark.read.csv("Folder path")
-```
-
-```
-# One way to explicitly mention the delimiter for a file
-	df = spark.read.options(delimiter = ',').csv("/resources/example.csv") # Notice that this is options, and not option
-
-	# The options command can be chained together as follows
-	df = spark.read.options(delimiter = ',',inferSchema='True',header='True').csv("/resources/example.csv") # Notice that this is options, and not option
-
-	# The "option" commands can be chained together as follows
-	df = spark.read.option("delimiter",",").option("inferSchema",True).option("header",True).csv("/resources/example.csv")
+df.printSchema()
+	root
+		|-- rank: integer (nullable = true)
+		|-- student_name: string (nullable = true)
+		|-- score: double (nullable = true)
+		|-- year: integer (nullable = true)
 ```
 
+#### Reading mulitple CSV files
+```
+df = spark.read.csv("file1,file2,file3") 
+
+# Notice that its one string with multiple paths that are comma separated.
+```
+
+#### Reading a whole directory of csv files
+```
+spark.read.csv("Folder path")
+```
+
+#### One way to explicitly mention the delimiter for a file
+```
+df = spark.read.options(delimiter = ',').csv("/resources/example.csv") # Notice that this is options, and not option
+```
+
+#### The options command can be chained together as follows
 
 ```
-	# CSV files can also be read with a predefined schema
-	schema = StructType().add("rank",IntegerType(),True). add("student_name",StringType(),True).add("score",DoubleType(),True).add("year",IntegerType())
+df = spark.read.options(delimiter = ',',inferSchema='True',header='True').csv("/resources/example.csv") 
 
-	df = spark.read.format("csv").option("header",True).schema(schema).load("/resources/example.csv")
+# Notice that this is options, and not option
+```
+
+#### The "option" commands can be chained together as follows
+```
+df = spark.read.option("delimiter",",").option("inferSchema",True).option("header",True).csv("/resources/example.csv")
+```
+
+#### CSV files can also be read with a predefined schema
+```
+schema = StructType().add("rank",IntegerType(),True). add("student_name",StringType(),True).add("score",DoubleType(),True).add("year",IntegerType())
+df = spark.read.format("csv").option("header",True).schema(schema).load("/resources/example.csv")
+```
+
 ```
 ### Creating data frames:
 
