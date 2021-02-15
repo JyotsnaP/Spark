@@ -29,10 +29,9 @@ sqlContext = SQLContext(Spark)
    - From all the csv files in a directory
 - Options when reading a csv
 
-	
-	
+
 | OPTION 		 	 | FUNCTION 		 	 | 			  
-|:------------------ |:------------------------------|:--------------------------------|
+|:------------------ |:------------------------------|
 | `DELIMITER`      		 | Used to specify the delimiter of the csv file. By default it is `,(COMMA)`, but can be other characters like pipe, tab, space  	 
 | `INFER SCHEMA`    	 | This is used if you want the schema to be inferred from the value in the columns. By default, it is set to `False`.       					 | 
 | `HEADER` 	 | This is used to read the first line of the csv and use as column names. But default the value is set to `False` 			 | 
@@ -42,9 +41,12 @@ sqlContext = SQLContext(Spark)
 
 ### Examples: 
 
-- #### This reads the csv into the dataframe df
+- #### This reads the `csv`/`json`/`parquet`/`text` file into the dataframe df
 ```
    df = spark.read.csv("/resources/example.csv")
+   df = spark.read.json("/resources/json_file")
+   df = spark.read.read("/resources/parquet_file_or_folder")
+   df = spark.read.text("/resources/example.txt")
 ```
    
 - #### Using the full source name and load you can do the same thing  
@@ -96,8 +98,7 @@ spark.read.csv("Folder path")
 df = spark.read.options(delimiter = ',').csv("/resources/example.csv") # Notice that this is options, and not option
 ```
 
-#### The options command can be chained together as follows
-
+- #### The options command can be chained together as follows
 ```
 df = spark.read.options(delimiter = ',',inferSchema='True',header='True').csv("/resources/example.csv") 
 
@@ -115,7 +116,15 @@ schema = StructType().add("rank",IntegerType(),True). add("student_name",StringT
 df = spark.read.format("csv").option("header",True).schema(schema).load("/resources/example.csv")
 ```
 
+#### NOTE : One thing to note is the order in which we call .option and .csv. First we mention .option(...) and then .csv(). The other way around will not work
+
+---
+
 ### Creating data frames:
+
+To be able to parallelize Collections in Driver program, Apache Spark provides SparkContext.parallelize() method. When a spark parallelize method is applied on a Collection, a new distributed dataset is created with specified number of paritions(if mentioned), and the elements of the collection are copied over to the RDD.
+
+*NOTE*: parallelize() method(like many other concepts in Spark) is also `lazy`.  
 
 ### Manipulating data frames:
 
