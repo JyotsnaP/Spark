@@ -42,35 +42,35 @@ sqlContext = SQLContext(Spark)
 
 ### Examples: 
 
-#### This reads the csv into the dataframe df
+- #### This reads the csv into the dataframe df
 ```
    df = spark.read.csv("/resources/example.csv")
 ```
    
-#### Using the full source name and load you can do the same thing  
+- #### Using the full source name and load you can do the same thing  
 ```
    df = spark.read.format("csv").load("/resources/example.csv")
 ```
-   
-#### When you run either of the above commands and then do a print schema you will not the schema to look something like this: 
+
+-  #### When you run either of the above commands and then do a print schema you will not the schema to look something like this: 
+
 ```
 df.printSchema()
-
 root
 	 |-- _c0: string (nullable = true)
 	 |-- _c1: string (nullable = true)
 	 |-- _c2: string (nullable = true)
 
-# *This shows that the first line of the CSV - which is typically the name of the columns have not been inferred, instead the columns are names _c1, _c2.* 
+# This shows that the first line of the CSV - which is typically the name of the columns have not been inferred, instead the columns are names _c1, _c2.
 ```
 
-#### To avoid the above, add the following option.
+- #### To avoid the above, add the following option.
 Using the option to infer schema
 ```
 df = spark.read.option("header","True").csv("/resources/example.csv")
 ```
 
-#### The schema has been inferred below. 
+- #### The schema has been inferred below. 
 ```
 df.printSchema()
 	root
@@ -80,19 +80,18 @@ df.printSchema()
 		|-- year: integer (nullable = true)
 ```
 
-#### Reading mulitple CSV files
+- #### Reading mulitple CSV files
 ```
 df = spark.read.csv("file1,file2,file3") 
-
 # Notice that its one string with multiple paths that are comma separated.
 ```
 
-#### Reading a whole directory of csv files
+- #### Reading a whole directory of csv files
 ```
 spark.read.csv("Folder path")
 ```
 
-#### One way to explicitly mention the delimiter for a file
+- #### One way to explicitly mention the delimiter for a file
 ```
 df = spark.read.options(delimiter = ',').csv("/resources/example.csv") # Notice that this is options, and not option
 ```
@@ -105,18 +104,17 @@ df = spark.read.options(delimiter = ',',inferSchema='True',header='True').csv("/
 # Notice that this is options, and not option
 ```
 
-#### The "option" commands can be chained together as follows
+- #### The "option" commands can be chained together as follows
 ```
 df = spark.read.option("delimiter",",").option("inferSchema",True).option("header",True).csv("/resources/example.csv")
 ```
 
-#### CSV files can also be read with a predefined schema
+- #### CSV files can also be read with a predefined schema
 ```
 schema = StructType().add("rank",IntegerType(),True). add("student_name",StringType(),True).add("score",DoubleType(),True).add("year",IntegerType())
 df = spark.read.format("csv").option("header",True).schema(schema).load("/resources/example.csv")
 ```
 
-```
 ### Creating data frames:
 
 ### Manipulating data frames:
